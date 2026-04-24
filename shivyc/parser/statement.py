@@ -68,74 +68,37 @@ def parse_return(index):
     Ex: return 5;
 
     """
-    index = match_token(index, token_kinds.return_kw, ParserError.GOT)
-    if token_is(index, token_kinds.semicolon):
-        return Return(None), index
-
-    node, index = parse_expression(index)
-
-    index = match_token(index, token_kinds.semicolon, ParserError.AFTER)
-    return Return(node), index
+    pass
 
 
 @add_range
 def parse_break(index):
     """Parse a break statement."""
-    index = match_token(index, token_kinds.break_kw, ParserError.GOT)
-    index = match_token(index, token_kinds.semicolon, ParserError.AFTER)
-    return Break(), index
+    pass
 
 
 @add_range
 def parse_continue(index):
     """Parse a continue statement."""
-    index = match_token(index, token_kinds.continue_kw, ParserError.GOT)
-    index = match_token(index, token_kinds.semicolon, ParserError.AFTER)
-    return Continue(), index
+    pass
 
 
 @add_range
 def parse_if_statement(index):
     """Parse an if statement."""
-    index = match_token(index, token_kinds.if_kw, ParserError.GOT)
-    index = match_token(index, token_kinds.open_paren, ParserError.AFTER)
-    conditional, index = parse_expression(index)
-    index = match_token(index, token_kinds.close_paren, ParserError.AFTER)
-    statement, index = parse_statement(index)
-
-    # If there is an else that follows, parse that too.
-    is_else = token_is(index, token_kinds.else_kw)
-    if not is_else:
-        else_statement = None
-    else:
-        index = match_token(index, token_kinds.else_kw, ParserError.GOT)
-        else_statement, index = parse_statement(index)
-
-    return IfStatement(conditional, statement, else_statement), index
+    pass
 
 
 @add_range
 def parse_while_statement(index):
     """Parse a while statement."""
-    index = match_token(index, token_kinds.while_kw, ParserError.GOT)
-    index = match_token(index, token_kinds.open_paren, ParserError.AFTER)
-    conditional, index = parse_expression(index)
-    index = match_token(index, token_kinds.close_paren, ParserError.AFTER)
-    statement, index = parse_statement(index)
-
-    return WhileStatement(conditional, statement), index
+    pass
 
 
 @add_range
 def parse_for_statement(index):
     """Parse a for statement."""
-    index = match_token(index, token_kinds.for_kw, ParserError.GOT)
-    index = match_token(index, token_kinds.open_paren, ParserError.AFTER)
-
-    first, second, third, index = _get_for_clauses(index)
-    stat, index = parse_statement(index)
-
-    return ForStatement(first, second, third, stat), index
+    pass
 
 
 def _get_for_clauses(index):
@@ -149,24 +112,7 @@ def _get_for_clauses(index):
 
     Raises exception on malformed input.
     """
-
-    first, index = _get_first_for_clause(index)
-
-    if token_is(index, token_kinds.semicolon):
-        second = None
-        index += 1
-    else:
-        second, index = parse_expression(index)
-        index = match_token(index, token_kinds.semicolon, ParserError.AFTER)
-
-    if token_is(index, token_kinds.close_paren):
-        third = None
-        index += 1
-    else:
-        third, index = parse_expression(index)
-        index = match_token(index, token_kinds.close_paren, ParserError.AFTER)
-
-    return first, second, third, index
+    pass
 
 
 def _get_first_for_clause(index):
@@ -180,15 +126,7 @@ def _get_first_for_clause(index):
     If malformed, raises exception.
 
     """
-    if token_is(index, token_kinds.semicolon):
-        return None, index + 1
-
-    with log_error():
-        return parse_declaration(index)
-
-    clause, index = parse_expression(index)
-    index = match_token(index, token_kinds.semicolon, ParserError.AFTER)
-    return clause, index
+    pass
 
 
 @add_range

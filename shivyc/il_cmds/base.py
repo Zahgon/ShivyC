@@ -96,7 +96,7 @@ class ILCommand:
         be changing the value of the ILValue pointed to by t1 or the value
         of the ILValue pointed to by t2.
         """
-        return []
+        pass
 
     def indir_read(self):
         """Return list of values that may be dereferenced for indirect read.
@@ -105,7 +105,7 @@ class ILCommand:
         be reading the value of the ILValue pointed to by t1 or the value of
         the ILValue pointed to by t2.
         """
-        return []
+        pass
 
     def label_name(self):
         """If this command is a label, return its name."""

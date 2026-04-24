@@ -34,7 +34,7 @@ class ErrorCollector:
 
     def clear(self):
         """Clear all warnings and errors. Intended only for testing use."""
-        self.issues = []
+        pass
 
 
 error_collector = ErrorCollector()

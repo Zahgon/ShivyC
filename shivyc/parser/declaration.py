@@ -75,18 +75,7 @@ def parse_abstract_declarator(index):
     This function saves a CompilerError if the parsed entity is a declarator,
     rather than an abstract declarator.
     """
-    root, index = parse_declarator(index)
-    node = root
-    while not isinstance(node, decl_nodes.Identifier):
-        node = node.child
-
-    if node.identifier:
-        # add error to the error_collector because more of a semantic error
-        # than a parsing error
-        err = "expected abstract declarator, but identifier name was provided"
-        error_collector.add(CompilerError(err, node.identifier.r))
-
-    return root, index
+    pass
 
 
 @add_range
@@ -233,7 +222,7 @@ def parse_spec_qual_list(index):
     This function saves a CompilerError if any declaration specifiers
     are provided that are not type specifiers or type qualifiers.
     """
-    return parse_decl_specifiers(index, True)
+    pass
 
 
 def parse_parameter_list(index):

@@ -101,18 +101,7 @@ class RegSpot(Spot):
         self.name = name
 
     def asm_str(self, size):  # noqa D102
-        if size == 0 or size == 8:
-            i = 0
-        elif size == 1:
-            i = 3
-        elif size == 2:
-            i = 2
-        elif size == 4:
-            i = 1
-        else:
-            raise NotImplementedError("unexpected register size")
-
-        return self.reg_map[self.name][i]
+        pass
 
 
 class MemSpot(Spot):
@@ -137,31 +126,7 @@ class MemSpot(Spot):
         self.count = count
 
     def asm_str(self, size):  # noqa D102
-        if isinstance(self.base, Spot):
-            base_str = self.base.asm_str(0)
-        else:
-            base_str = self.base
-
-        total_offset = self.offset
-        if not self.count:
-            total_offset = self.offset + self.chunk
-
-        if total_offset == 0:
-            simple = base_str
-        elif total_offset > 0:
-            simple = f"{base_str}+{total_offset}"
-        else:  # total_offset < 0
-            simple = f"{base_str}-{-total_offset}"
-
-        if self.count and self.chunk > 0:
-            final = f"{simple}+{self.chunk}*{self.count.asm_str(8)}"
-        elif self.count and self.chunk < 0:
-            final = f"{simple}-{-self.chunk}*{self.count.asm_str(8)}"
-        else:
-            final = simple
-
-        size_desc = self.size_map.get(size, "")
-        return f"{size_desc}[{final}]"
+        pass
 
     def rbp_offset(self):  # noqa D102
         if self.base == RBP:
@@ -205,7 +170,7 @@ class LiteralSpot(Spot):
         self.value = value
 
     def asm_str(self, size):  # noqa D102
-        return str(self.value)
+        pass
 
 
 # RBX is callee-saved, which is still unsupported

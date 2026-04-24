@@ -171,10 +171,10 @@ class Call(ILCommand):
         return {self.func: self.arg_regs[0:len(self.args)]}
 
     def indir_write(self): # noqa D102
-        return self.args
+        pass
 
     def indir_read(self): # noqa D102
-        return self.args
+        pass
 
     def make_asm(self, spotmap, home_spots, get_reg, asm_code): # noqa D102
         func_spot = spotmap[self.func]

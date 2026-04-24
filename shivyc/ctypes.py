@@ -148,9 +148,7 @@ class IntegerCType(CType):
 
     def make_unsigned(self):
         """Return an unsigned version of this type."""
-        unsig_self = copy.copy(self)
-        unsig_self.signed = False
-        return unsig_self
+        pass
 
 
 class VoidCType(CType):

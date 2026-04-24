@@ -247,7 +247,7 @@ class ReadAt(_ValueCmd):
         return [self.output]
 
     def indir_read(self):  # noqa D102
-        return [self.addr]
+        pass
 
     def make_asm(self, spotmap, home_spots, get_reg, asm_code):  # noqa D102
         addr_spot = spotmap[self.addr]
@@ -287,7 +287,7 @@ class SetAt(_ValueCmd):
         return []
 
     def indir_write(self):  # noqa D102
-        return [self.addr]
+        pass
 
     def make_asm(self, spotmap, home_spots, get_reg, asm_code):  # noqa D102
         addr_spot = spotmap[self.addr]
